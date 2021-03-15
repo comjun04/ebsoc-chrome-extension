@@ -27,6 +27,7 @@ function func() {
   //chrome.webNavigation.getAllFrames
 
   const videoObj = document.getElementById('lx-player_html5_api')
+    || document.getElementById('kollus_player_html5_api')
 
   const port = chrome.runtime.connect()
 
