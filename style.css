@@ -1,0 +1,23 @@
+html {
+  width: 400px
+}
+
+header {
+  background-color: aqua;
+}
+
+.inline {
+  display: inline;
+}
+
+#rateRange {
+  width: 70%
+}
+
+#rateInput {
+  width: 10%
+}
+
+#rateApply {
+  width: auto
+}

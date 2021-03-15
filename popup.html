@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+      <h1>EBS 온라인클래스 플레이어 툴</h1>
+    </header>
+
+    <main>
+      <div>
+        <h3>플레이어 속도 조절</h3>
+        <input type="range" id="rateRange" class="inline" min="0.5" max="1.5" value="1" step="0.1">
+        <input type="text" id="rateInput" class="inline" value="1" disabled>
+        <button id="rateApply" class="inline">적용</button>
+      </div>
+
+      <div>
+        <h3>플레이어 스크롤</h3>
+        <button>뒤로 10초</button>
+        <button>뒤로 5초</button>
+        <button>앞으로 5초</button>
+        <button>앞으로 10초</button>
+      </div>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
