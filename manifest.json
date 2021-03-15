@@ -1,7 +1,7 @@
 {
   "name": "EBSoc Tools",
   "description": "EBS 온라인클래스 플레이어 툴",
-  "version": "1.0",
+  "version": "1.1",
   "manifest_version": 3,
   "permissions": [
     "activeTab",
