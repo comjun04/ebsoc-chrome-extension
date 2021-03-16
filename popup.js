@@ -35,6 +35,8 @@ function func() {
     console.log(obj)
     if (obj.cmd === 'rate') {
       videoObj.playbackRate = obj.data
+    } else if (obj.cmd === 'seek') {
+      videoObj.currentTime += obj.data
     }
   })
 }
@@ -42,6 +44,10 @@ function func() {
 const range = document.getElementById('rateRange')
 const input = document.getElementById('rateInput')
 const rateApplyBtn = document.getElementById('rateApply')
+const back10sBtn = document.getElementById('back10s')
+const back5sBtn = document.getElementById('back5s')
+const front5sBtn = document.getElementById('front5s')
+const front10sBtn = document.getElementById('front10s')
 
 range.addEventListener('input', () => {
   input.value = range.value
@@ -57,3 +63,16 @@ rateApplyBtn.addEventListener('click', () => {
     console.log('send ok')
   })
 })
+
+// seeking
+function seek (seconds) {
+  messaging.postMessage({
+    cmd: 'seek',
+    data: seconds
+  })
+}
+
+back10sBtn.addEventListener('click', () => seek(-10))
+back5sBtn.addEventListener('click', () => seek(-5))
+front5sBtn.addEventListener('click', () => seek(5))
+front10sBtn.addEventListener('click', () => seek(10))
