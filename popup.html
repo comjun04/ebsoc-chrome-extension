@@ -12,20 +12,34 @@
 
     <main>
       <div>
-        <h3>플레이어 속도 조절</h3>
+        <h2>플레이어 속도 조절</h2>
         <input type="range" id="rateRange" class="inline" min="0.5" max="1.5" value="1" step="0.1">
         <input type="text" id="rateInput" class="inline" value="1" disabled>
         <button id="rateApply" class="inline">적용</button>
       </div>
 
       <div>
-        <h3>플레이어 스크롤</h3>
-        <button id="back10s">뒤로 10초</button>
-        <button id="back5s">뒤로 5초</button>
-        <button id="front5s">앞으로 5초</button>
-        <button id="front10s">앞으로 10초</button>
+        <h2>플레이어 컨트롤</h2>
+        <div>
+          <button id="play">재생</button>
+          <button id="pause">일시정지</button>
+        </div>
+        <br>
+        <div>
+          <button id="back10s">뒤로 10초</button>
+          <button id="back5s">뒤로 5초</button>
+          <button id="front5s">앞으로 5초</button>
+          <button id="front10s">앞으로 10초</button>
+        </div>
       </div>
     </main>
+
+    <br>
+
+    <footer>
+      EBSoc Tools v1.1<br>
+      Copyright &copy; comjun04. <a href="https://github.com/comjun04/ebsoc-chrome-extension">View Source</a>
+    </footer>
 
     <script src="popup.js"></script>
   </body>

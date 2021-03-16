@@ -45,22 +45,40 @@ function func() {
 
     port.onMessage.addListener(obj => {
       console.log(obj)
-      if (obj.cmd === 'rate') {
-        videoObj.playbackRate = obj.data
-      } else if (obj.cmd === 'seek') {
-        videoObj.currentTime += obj.data
+
+      switch (obj.cmd) {
+        case 'rate':
+          videoObj.playbackRate = obj.data
+          break
+
+        case 'seek':
+          videoObj.currentTime += obj.data
+          break
+        
+        case 'play':
+          videoObj.play()
+          break
+        
+        case 'pause':
+          videoObj.pause()
+          break
       }
     })
   }
 }
 
+// Elements
 const range = document.getElementById('rateRange')
 const input = document.getElementById('rateInput')
 const rateApplyBtn = document.getElementById('rateApply')
+
 const back10sBtn = document.getElementById('back10s')
 const back5sBtn = document.getElementById('back5s')
 const front5sBtn = document.getElementById('front5s')
 const front10sBtn = document.getElementById('front10s')
+
+const playBtn = document.getElementById('play')
+const pauseBtn = document.getElementById('pause')
 
 range.addEventListener('input', () => {
   input.value = range.value
@@ -89,3 +107,14 @@ back10sBtn.addEventListener('click', () => seek(-10))
 back5sBtn.addEventListener('click', () => seek(-5))
 front5sBtn.addEventListener('click', () => seek(5))
 front10sBtn.addEventListener('click', () => seek(10))
+
+playBtn.addEventListener('click', () => {
+  messaging.postMessage({
+    cmd: 'play'
+  })
+})
+pauseBtn.addEventListener('click', () => {
+  messaging.postMessage({
+    cmd: 'pause'
+  })
+})
