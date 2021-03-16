@@ -10,7 +10,8 @@
   "host_permissions": [
     "https://taj.ebsoc.co.kr/*",
     "https://player.ebsoc.co.kr/*",
-    "https://v.kr.kollus.com/*"
+    "https://v.kr.kollus.com/*",
+    "https://www.youtube.com/*"
   ],
   "background": {
     "service_worker": "background.js"

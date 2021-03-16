@@ -10,6 +10,7 @@ let messaging;
 
   console.log(tab)
 
+  chrome.runtime.onConnect.addListener(port => messaging = port)
   chrome.scripting.executeScript({
     target: {
       tabId: tab.id,
@@ -17,28 +18,40 @@ let messaging;
     },
     function: func
   }, () => {
-    chrome.runtime.onConnect.addListener(port => messaging = port)
+    console.log('func done')
   })
 })()
 
 function func() {
   console.log('worked', document)
 
-  //chrome.webNavigation.getAllFrames
-
-  const videoObj = document.getElementById('lx-player_html5_api')
-    || document.getElementById('kollus_player_html5_api')
-
-  const port = chrome.runtime.connect()
-
-  port.onMessage.addListener(obj => {
-    console.log(obj)
-    if (obj.cmd === 'rate') {
-      videoObj.playbackRate = obj.data
-    } else if (obj.cmd === 'seek') {
-      videoObj.currentTime += obj.data
+  // video 가져오기
+  let videoObj = document.getElementById('lx-player_html5_api') ||
+    document.getElementById('kollus_player_html5_api')
+  if (!videoObj) {
+    // 유튜브 영상일 경우 태그 이름으로 추출
+    const list = document.getElementsByTagName('video')
+    for (const i of list) {
+      if (i != null) {
+        videoObj = i
+        break
+      }
     }
-  })
+  }
+  console.log('video object', videoObj)
+
+  if (videoObj) {
+    const port = chrome.runtime.connect()
+
+    port.onMessage.addListener(obj => {
+      console.log(obj)
+      if (obj.cmd === 'rate') {
+        videoObj.playbackRate = obj.data
+      } else if (obj.cmd === 'seek') {
+        videoObj.currentTime += obj.data
+      }
+    })
+  }
 }
 
 const range = document.getElementById('rateRange')
@@ -65,7 +78,7 @@ rateApplyBtn.addEventListener('click', () => {
 })
 
 // seeking
-function seek (seconds) {
+function seek(seconds) {
   messaging.postMessage({
     cmd: 'seek',
     data: seconds
