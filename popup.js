@@ -10,13 +10,17 @@ const range = document.getElementById('rateRange')
 const input = document.getElementById('rateInput')
 const rateApplyBtn = document.getElementById('rateApply')
 
+const playBtn = document.getElementById('play')
+const pauseBtn = document.getElementById('pause')
+
 const back10sBtn = document.getElementById('back10s')
 const back5sBtn = document.getElementById('back5s')
 const front5sBtn = document.getElementById('front5s')
 const front10sBtn = document.getElementById('front10s')
 
-const playBtn = document.getElementById('play')
-const pauseBtn = document.getElementById('pause')
+const seekInput = document.getElementById('seekInput')
+const seekRewBtn = document.getElementById('seekRew')
+const seekFwdBtn = document.getElementById('seekFwd')
 
 ;
 (async () => {
@@ -86,6 +90,23 @@ function mainInit() {
       messaging.postMessage({
         cmd: 'pause'
       })
+    })
+
+    // Seek input
+    const getSeekInputValue = () => {
+      const val = Number(seekInput.value)
+      const val2 = isNaN(val) ? 0 : val
+      return val2
+    }
+
+    seekRewBtn.addEventListener('click', () => {
+      const val = getSeekInputValue()
+      seek(val * -1)
+    })
+
+    seekFwdBtn.addEventListener('click', () => {
+      const val = getSeekInputValue()
+      seek(val)
     })
   })
 }
