@@ -10,6 +10,10 @@ header {
   display: inline;
 }
 
+.hidden {
+  display: none
+}
+
 #rateRange {
   width: 70%
 }
